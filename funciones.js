@@ -79,25 +79,27 @@ console.log(average(numbers2));
 
 
 
+
 //Iteración #5: Calcular promedio de strings
 // Crea una función que reciba por parámetro un array y
 // cuando es un valor number lo sume y de lo contrario cuente la longitud del string y lo sume
 
 const mixedElements = [6, 1, "Rayo", 1, "vallecano", "10", "upgrade", 8, "hub"];
 
-let listNumber = 0;
+
 
 function averageWord(array) {
-  for (let elements of array) {
-      if (typeof elements === "number") {
-          listNumber += elements;
+    let listNumber = 0;
+    for (let elements of array) {
+        if (typeof elements === "number") {
+            listNumber += elements;
         }
-      if (typeof elements === "string") {
-        listNumber += elements.length;
+        else if (typeof elements === "string") {
+            listNumber += elements.length;
         }
-}
+    }
 
-  return listNumber;
+    return listNumber;
 }
 
 
@@ -159,10 +161,21 @@ const nameFinder = [
     'Marc'
   ];
 
-  function finderName(array) {
+function finderName(arr, valor) {
     
-  }
+    for (let index = 0; index < arr.length; index++) {
+        let elemento = arr[index];
+        if (elemento == valor) {
+            return [true, index];
+        }
+    }
 
+    return false;
+}
+
+console.log(finderName(nameFinder, 'Sara'));
+console.log(finderName(nameFinder, 'Natasha'));
+      
 
 
 
@@ -187,6 +200,25 @@ const nameFinder = [
     'upgrade',
     'code'
   ];
-  function repeatCounter(param) {
-    // insert code
+  
+  function repeatCounter(arr) {
+    let resultados = {};
+    
+    for (const palabra of arr) {
+        // 1. busco si existe la palabra en el diccionar resultados.
+        // 1.1 Si existe -> coger el valor (contador), aumentarlo en 1 (sumar1), y actualizar el objeto resultados
+        // 1.2 Si no existe, -> introducir la clave y valor 1 (porque es la primera vez que aparece)
+        if (resultados[palabra] != undefined) { // ya tenia la palabra vista de antes
+            let contadorActualParaPalabra = resultados[palabra];
+            resultados[palabra] = contadorActualParaPalabra + 1;
+        }
+        else { // es la primera vez que veo la palabra
+            resultados[palabra] = 1;
+        }
+    }
+
+    return resultados;
   }
+
+  console.log(repeatCounter(counterWords));
+  
